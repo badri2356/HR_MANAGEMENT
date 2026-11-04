@@ -1,0 +1,22 @@
+package com.zidio.nexushr.auth.domain.enums;
+
+public enum AuditAction {
+    LOGIN_SUCCESS,
+    LOGIN_FAILED,
+    LOGOUT,
+
+    USER_CREATED,
+    USER_ROLES_CHANGED,
+    USER_STATUS_CHANGED,
+    PASSWORD_CHANGED,
+
+    EMPLOYEE_CREATED,
+    EMPLOYEE_UPDATED,
+
+    LEAVE_APPROVED,
+    LEAVE_REJECTED,
+
+    SALARY_UPDATED,
+    PAYROLL_PROCESSED,
+    PAYROLL_PAID
+}

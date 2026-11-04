@@ -1,0 +1,1 @@
+ALTER TABLE attendance RENAME COLUMN status TO attendance_status;

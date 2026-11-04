@@ -1,0 +1,29 @@
+@"
+# Build output
+target/
+build/
+*.class
+*.jar
+
+# IntelliJ / VS Code
+.idea/
+*.iml
+out/
+*.code-workspace
+
+# Uploaded employee documents (private data)
+uploads/
+
+# Local secrets
+.env
+*.env
+application-local.yml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Frontend
+node_modules/
+dist/
+"@ | Set-Content -Encoding utf8 .gitignore

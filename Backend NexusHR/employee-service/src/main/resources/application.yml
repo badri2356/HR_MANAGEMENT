@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: EMPLOYEE-SERVICE
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/hr_management?currentSchema=employee}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD}                               # CHANGED: no real password in the file; set DB_PASSWORD instead
+
+  ai:
+    model:
+      chat: ollama                                         # use Ollama for chat
+    ollama:
+      base-url: ${OLLAMA_BASE_URL:http://localhost:11434}  # CHANGED: can be overridden on a server
+      chat:
+        model: ${OLLAMA_MODEL:llama3.2}                    # CHANGED: can be overridden on a server
+        temperature: 0.2                                   # low = consistent, factual answers
+      init:
+        pull-model-strategy: never                         # don't download models at startup
+
+
+  jpa:
+    hibernate:
+      ddl-auto: validate                                   # Flyway creates tables; Hibernate only checks them
+    open-in-view: false
+    show-sql: ${SHOW_SQL:true}                             # CHANGED: on locally, can be switched off when deployed
+    properties:
+      hibernate:
+        default_schema: employee                           # CHANGED: underscore, not a dash (see below)
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    schemas: employee
+    default-schema: employee
+
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+
+server:
+  port: 8082
+  error:
+    include-message: ${ERROR_INCLUDE_MESSAGE:always}       # CHANGED: set to "never" when deployed
+
+jwt:
+  secret: ${JWT_SECRET}                                    # must be the same value as in auth-service
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+
+app:
+  upload-dir: ${UPLOAD_DIR:uploads}                        # CHANGED: can point to another folder on a server
