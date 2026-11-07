@@ -1,9 +1,8 @@
 package com.zidio.nexushr.auth.services.service;
 
-import com.zidio.nexushr.auth.dto.request.LoginRequest;
-import com.zidio.nexushr.auth.dto.request.RefreshTokenRequest;
-import com.zidio.nexushr.auth.dto.request.RegisterRequest;
+import com.zidio.nexushr.auth.dto.request.*;
 import com.zidio.nexushr.auth.dto.response.AuthResponse;
+import com.zidio.nexushr.auth.dto.response.MeResponseDto;
 
 public interface AuthService {
 
@@ -15,4 +14,10 @@ public interface AuthService {
     public AuthResponse refreshToken(RefreshTokenRequest request);
 
     public void logout(RefreshTokenRequest request);
+
+    void forgotPassword(ForgotPasswordRequest request);
+
+    void resetPassword(ResetPasswordRequest request);
+
+    public MeResponseDto me(String email);
 }

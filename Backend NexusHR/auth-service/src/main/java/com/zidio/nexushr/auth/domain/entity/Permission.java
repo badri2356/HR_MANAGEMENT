@@ -18,7 +18,5 @@ public class Permission extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private PermissionCode code;
-
     private String description;
-
 }

@@ -38,13 +38,13 @@ public class SecurityConfig {
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(request ->
-                        request.requestMatchers(
+                        request.requestMatchers("/api/auth/login",
                                         "/api/auth/register",
-                                        "/api/auth/login",
                                         "/api/auth/refresh-token",
-                                        "/api/auth/logout"
-
+                                        "/api/auth/forgot-password",
+                                        "/api/auth/reset-password"
                                 ).permitAll()
+                                .requestMatchers("/error").permitAll()
                                 .anyRequest().authenticated()
                 ).addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
