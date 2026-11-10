@@ -28,7 +28,8 @@ public class SecurityConfig {
                         .requestMatchers(
                                 HttpMethod.GET,
                                 "/api/departments",
-                                "/api/departments/**"
+                                "/api/departments/**",
+                                "/ws/**"
                         ).permitAll()
 
                         .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()

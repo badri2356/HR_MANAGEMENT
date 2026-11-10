@@ -6,10 +6,7 @@ import com.employee.services.service.NotificationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/notifications")
@@ -35,10 +32,10 @@ public class NotificationController {
     }
 
     @PatchMapping("/{id}/read")
-    public ResponseEntity<?> markAsRead(@AuthenticationPrincipal String email, Long notificationId) {
+    public ResponseEntity<?> markAsRead(@AuthenticationPrincipal String email, @PathVariable Long id) {
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new ApiResponse<>(Boolean.FALSE, notificationService.markAsRead(email, notificationId), SuccessMessages.DATA_UPDATED_SUCCESSFULLY));
+                .body(new ApiResponse<>(Boolean.FALSE, notificationService.markAsRead(email, id), SuccessMessages.DATA_UPDATED_SUCCESSFULLY));
     }
 
     @PatchMapping("/read-all")
